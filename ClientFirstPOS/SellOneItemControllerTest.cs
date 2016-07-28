@@ -29,6 +29,16 @@ namespace ClientFirstPOS
             saleController.onBarcode("::product not found::");
             mockDisplay.Verify(d => d.DisplayProductNotFoundMessage(It.IsRegex(@".\:{1}product not found\:{1}.")), Times.Once);
         }
+
+        [Test]
+        public void emptyBarcode()
+        {
+            Mock<IDisplay> mockDisplay = new Mock<IDisplay>();
+
+            SaleController saleController = new SaleController(mockDisplay.Object, null);
+            saleController.onBarcode("");
+            mockDisplay.Verify(d => d.DisplayEmptyBarcodeMessage(), Times.Once());
+        }
     }
 
     public class SaleController
@@ -44,6 +54,11 @@ namespace ClientFirstPOS
 
         public void onBarcode(string barcode)
         {
+            if (barcode == string.Empty)
+            {
+                display.DisplayEmptyBarcodeMessage();
+                return;
+            }
             Price price = catalog.FindPrice(barcode);
             if(price == null)
                 display.DisplayProductNotFoundMessage(barcode);
@@ -56,6 +71,7 @@ namespace ClientFirstPOS
     {
         void DisplayPrice(Price cents);
         void DisplayProductNotFoundMessage(string message);
+        void DisplayEmptyBarcodeMessage();
     }
 
     public interface ICatalog

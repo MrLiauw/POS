@@ -11,10 +11,10 @@ namespace ClientFirstPOS
             Mock<IDisplay> mockDisplay = new Mock<IDisplay>();
             Mock<ICatalog> mockCatalog = new Mock<ICatalog>();
             Price irrelevantPrice = Price.cents(795);
-            mockCatalog.Setup(c => c.FindPrice(It.IsAny<string>())).Returns(irrelevantPrice);
+            mockCatalog.Setup(c => c.FindPrice("::product found::")).Returns(irrelevantPrice);
 
             SaleController saleController = new SaleController(mockDisplay.Object, mockCatalog.Object);
-            saleController.onBarcode("12345");
+            saleController.onBarcode("::product found::");
             mockDisplay.Verify(d=>d.DisplayPrice(irrelevantPrice), Times.Once);
         }
 

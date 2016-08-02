@@ -29,11 +29,11 @@ namespace ClientFirstPOS
             Assert.AreEqual(null, CatalogWithout("12345").FindPrice("12345"));
         }
 
-        private static ICatalog CatalogWithout(string price)
+        private static ICatalog CatalogWithout(string barcodeToAvoid)
         {
             return new InMemoryCatalog(new Dictionary<string, Price>(){
                 {
-                    "anything but " + price, Price.cents(0)
+                    "anything but " + barcodeToAvoid, Price.cents(0)
                 }});
         }
     }

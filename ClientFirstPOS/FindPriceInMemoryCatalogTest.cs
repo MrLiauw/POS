@@ -3,33 +3,18 @@ using NUnit.Framework;
 
 namespace ClientFirstPOS
 {
-    public class FindPriceInMemoryCatalogTest
+    public class FindPriceInMemoryCatalogTest : FindPriceInCatalogContract
     {
-        [Test]
-        public void ProductFound()
-        {
-            Price foundPrice = Price.cents(1250);
-            ICatalog catalog = CatalogWith("12345", foundPrice);
-
-            Assert.AreEqual(foundPrice, catalog.FindPrice("12345"));
-
-        }
-
-        private static ICatalog CatalogWith(string barcode, Price price)
+        protected override ICatalog CatalogWith(string barcode, Price price)
         {
             return new InMemoryCatalog(new Dictionary<string, Price>(){
-                {
-                    barcode, price
-                }});
+                {"definitely barcode" + barcode, Price.cents(0)},
+                {barcode, price},
+                {"again definitely not " + barcode, Price.cents(10000000)}
+            });
         }
 
-        [Test]
-        public void ProductNotFound()
-        {
-            Assert.AreEqual(null, CatalogWithout("12345").FindPrice("12345"));
-        }
-
-        private static ICatalog CatalogWithout(string barcodeToAvoid)
+        protected override ICatalog CatalogWithout(string barcodeToAvoid)
         {
             return new InMemoryCatalog(new Dictionary<string, Price>(){
                 {

@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FindPriceInCatalogContract.cs" />
     <Compile Include="FindPriceInMemoryCatalogTest.cs" />
     <Compile Include="ICatalog.cs" />
     <Compile Include="InMemoryCatalog.cs" />

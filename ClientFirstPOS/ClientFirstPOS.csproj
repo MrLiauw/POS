@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FindPriceInMemoryCatalogTest.cs" />
+    <Compile Include="ICatalog.cs" />
     <Compile Include="InMemoryCatalog.cs" />
     <Compile Include="Price.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

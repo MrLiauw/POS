@@ -73,9 +73,4 @@ namespace ClientFirstPOS
         void DisplayProductNotFoundMessage(string message);
         void DisplayEmptyBarcodeMessage();
     }
-
-    public interface ICatalog
-    {
-        Price FindPrice(string barcode);
-    }
 }

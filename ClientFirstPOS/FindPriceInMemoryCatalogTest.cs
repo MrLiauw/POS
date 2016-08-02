@@ -31,7 +31,10 @@ namespace ClientFirstPOS
 
         private static ICatalog CatalogWithout(string price)
         {
-            return new InMemoryCatalog(new Dictionary<string, Price>());
+            return new InMemoryCatalog(new Dictionary<string, Price>(){
+                {
+                    "anything but " + price, Price.cents(0)
+                }});
         }
     }
 }

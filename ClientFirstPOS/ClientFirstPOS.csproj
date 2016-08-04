@@ -49,6 +49,7 @@
     <Compile Include="FindPriceInMemoryCatalogTest.cs" />
     <Compile Include="ICatalog.cs" />
     <Compile Include="InMemoryCatalog.cs" />
+    <Compile Include="LearnHowToHijackConsoleStream.cs" />
     <Compile Include="Price.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SellOneItemControllerTest.cs" />

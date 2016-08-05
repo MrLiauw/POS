@@ -46,6 +46,28 @@ namespace ClientFirstPOS
             Assert.AreEqual(new List<string>() { "Scanning error: empty barcode" },
                 TextUtilities.Lines(canvas.ToString()));
         }
+
+        [Test]
+        public void MultipleMessages()
+        {
+            StringWriter canvas = new StringWriter();
+            Console.SetOut(canvas);
+
+            var consoleDisplay = new ConsoleDisplay();
+            consoleDisplay.displayEmptyBarcodeMessage();
+            consoleDisplay.displayProductNotFoundMessage("87238947");
+            consoleDisplay.displayEmptyBarcodeMessage();
+            consoleDisplay.displayProductNotFoundMessage("9284324");
+
+            Assert.AreEqual(new List<string>()
+            {
+                "Scanning error: empty barcode",
+                "Product not found for 87238947",
+                "Scanning error: empty barcode",
+                "Product not found for 9284324"
+            },
+                TextUtilities.Lines(canvas.ToString()));
+        }
     }
 
     public class ConsoleDisplay

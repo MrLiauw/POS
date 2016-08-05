@@ -30,8 +30,7 @@ namespace ClientFirstPOS
             Console.SetOut(canvas);
 
             Console.WriteLine("Hello, world.");
-            Assert.AreEqual(new List<string>(){"Hello, world."}, 
-                Lines(canvas.ToString())); 
+            Assert.AreEqual(new List<string>(){"Hello, world."}, TextUtilities.Lines(canvas.ToString())); 
         }
 
         [Test]
@@ -44,14 +43,7 @@ namespace ClientFirstPOS
                 Console.WriteLine("Line " + i);
             }
 
-            Assert.AreEqual(new List<string>() { "Line 1", "Line 2", "Line 3", "Line 4", "Line 5" },
-               Lines(canvas.ToString())); 
-        }
-
-        public static List<string> Lines(string text)
-        {
-            string[] arrayString = text.Split(new[] {'\r', '\n'}, StringSplitOptions.RemoveEmptyEntries);
-            return arrayString.ToList();
+            Assert.AreEqual(new List<string>() { "Line 1", "Line 2", "Line 3", "Line 4", "Line 5" }, TextUtilities.Lines(canvas.ToString())); 
         }
     }
 }

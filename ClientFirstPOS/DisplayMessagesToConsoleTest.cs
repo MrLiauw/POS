@@ -34,6 +34,18 @@ namespace ClientFirstPOS
             Assert.AreEqual(new List<string>() { "Product not found for 5324234" }, 
                 TextUtilities.Lines(canvas.ToString()));
         }
+
+        [Test]
+        public void EmptyBarcode()
+        {
+            StringWriter canvas = new StringWriter();
+            Console.SetOut(canvas);
+
+            new ConsoleDisplay().displayEmptyBarcodeMessage();
+
+            Assert.AreEqual(new List<string>() { "Scanning error: empty barcode" },
+                TextUtilities.Lines(canvas.ToString()));
+        }
     }
 
     public class ConsoleDisplay
@@ -41,6 +53,11 @@ namespace ClientFirstPOS
         public void displayProductNotFoundMessage(string barcodeNotFound)
         {
             Console.WriteLine(string.Format("Product not found for {0}", barcodeNotFound));
+        }
+
+        internal void displayEmptyBarcodeMessage()
+        {
+            Console.WriteLine("Scanning error: empty barcode");
         }
     }
 }

@@ -69,17 +69,4 @@ namespace ClientFirstPOS
                 TextUtilities.Lines(canvas.ToString()));
         }
     }
-
-    public class ConsoleDisplay
-    {
-        public void displayProductNotFoundMessage(string barcodeNotFound)
-        {
-            Console.WriteLine(string.Format("Product not found for {0}", barcodeNotFound));
-        }
-
-        internal void displayEmptyBarcodeMessage()
-        {
-            Console.WriteLine("Scanning error: empty barcode");
-        }
-    }
 }

@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsoleDisplay.cs" />
     <Compile Include="DisplayMessagesToConsoleTest.cs" />
     <Compile Include="DisplayPriceToConsoleTest.cs" />
     <Compile Include="FindPriceInCatalogContract.cs" />

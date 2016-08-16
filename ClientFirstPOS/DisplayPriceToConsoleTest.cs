@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using NUnit.Framework;
 
 namespace ClientFirstPOS
@@ -6,6 +8,21 @@ namespace ClientFirstPOS
     [TestFixture]
     internal class DisplayPriceToConsoleTest
     {
+        private TextWriter _productionSystemOut;
+
+        [SetUp]
+        public void rememberConsoleOut()
+        {
+            _productionSystemOut = Console.Out;
+        }
+
+
+        [TearDown]
+        public void restoreConsoleOut()
+        {
+            Console.SetOut(_productionSystemOut);
+        }
+
         [TestCase("$7.89", 789, TestName = "Monetary amount of 789 formatted to $7.89")]
         [TestCase("$5.20", 520, TestName = "Monetary amount of 520 formatted to $5.20")]
         [TestCase("$4.00", 400, TestName = "Monetary amount of 400 formatted to $4.00")]
@@ -16,13 +33,13 @@ namespace ClientFirstPOS
         [TestCase("$2,108,322.81", 210832281, TestName = "Monetary amount of 210832281 formatted to $2,108,322.81")]
         public void Simplest(string expected, int priceWithCents)
         {
-            Assert.AreEqual(expected, format(Price.cents(priceWithCents)));
-        }
+            StringWriter canvas = new StringWriter();
+            Console.SetOut(canvas);
 
-        private static string format(Price price)
-        {
-            decimal priceInDollars = price.PriceInDollars();
-            return String.Format("${0}", priceInDollars.ToString("#,##0.00"));
+            new ConsoleDisplay().displayPrice(Price.cents(priceWithCents));
+
+            Assert.AreEqual(new List<string>() { expected },
+                TextUtilities.Lines(canvas.ToString()));
         }
     }
 }

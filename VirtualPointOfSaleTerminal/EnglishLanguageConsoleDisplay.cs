@@ -1,7 +1,6 @@
 ﻿using System;
-using VirtualPointOfSaleTerminal;
 
-namespace ClientFirstPOS
+namespace VirtualPointOfSaleTerminal
 {
     public class EnglishLanguageConsoleDisplay : IDisplay
     {

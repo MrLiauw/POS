@@ -8,11 +8,6 @@ namespace ClientFirstPOS
         private string EMPTY_BARCODE_MESSAGE_TEMPLATE = "Scanning error: empty barcode";
         private string PRICE_FOUND_MESSAGE_TEMPLATE = "${0}";
 
-        private void DisplayMessage(string messageTemplate, string placeholderValue = "")
-        {
-            Render(Merge(messageTemplate, placeholderValue));
-        }
-
         private static void Render(string text)
         {
             Console.WriteLine(text);
@@ -26,17 +21,17 @@ namespace ClientFirstPOS
 
         public void DisplayProductNotFoundMessage(string barcodeNotFound)
         {
-            DisplayMessage(PRODUCT_NOT_FOUND_MESSAGE_TEMPLATE, barcodeNotFound);
+            Render(Merge(PRODUCT_NOT_FOUND_MESSAGE_TEMPLATE, barcodeNotFound));
         }
 
         public void DisplayEmptyBarcodeMessage()
         {
-            DisplayMessage(EMPTY_BARCODE_MESSAGE_TEMPLATE);
+            Render(Merge(EMPTY_BARCODE_MESSAGE_TEMPLATE, ""));
         }
 
         public void DisplayPrice(Price price)
         {
-            DisplayMessage(PRICE_FOUND_MESSAGE_TEMPLATE, price.DollarValue().ToString("#,##0.00"));
+            Render(Merge(PRICE_FOUND_MESSAGE_TEMPLATE, price.DollarValue().ToString("#,##0.00")));
         }
     }
 }

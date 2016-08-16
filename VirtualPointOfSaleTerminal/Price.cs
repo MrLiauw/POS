@@ -1,4 +1,4 @@
-namespace ClientFirstPOS
+namespace VirtualPointOfSaleTerminal
 {
     public class Price
     {

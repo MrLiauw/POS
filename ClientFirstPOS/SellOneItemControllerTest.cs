@@ -1,5 +1,6 @@
 ﻿using Moq;
 using NUnit.Framework;
+using VirtualPointOfSaleTerminal;
 
 namespace ClientFirstPOS
 {
@@ -38,32 +39,6 @@ namespace ClientFirstPOS
             SaleController saleController = new SaleController(mockDisplay.Object, null);
             saleController.onBarcode("");
             mockDisplay.Verify(d => d.DisplayEmptyBarcodeMessage(), Times.Once());
-        }
-    }
-
-    public class SaleController
-    {
-        private IDisplay display;
-        private ICatalog catalog;
-
-        public SaleController(IDisplay display, ICatalog catalog)
-        {
-            this.display = display;
-            this.catalog = catalog;
-        }
-
-        public void onBarcode(string barcode)
-        {
-            if (barcode == string.Empty)
-            {
-                display.DisplayEmptyBarcodeMessage();
-                return;
-            }
-            Price price = catalog.FindPrice(barcode);
-            if(price == null)
-                display.DisplayProductNotFoundMessage(barcode);
-            else
-                display.DisplayPrice(price);
         }
     }
 }

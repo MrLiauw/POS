@@ -1,4 +1,5 @@
 ﻿using System;
+using VirtualPointOfSaleTerminal;
 
 namespace ClientFirstPOS
 {

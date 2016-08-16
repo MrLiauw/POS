@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace ClientFirstPOS
+namespace VirtualPointOfSaleTerminal
 {
-    internal class InMemoryCatalog : ICatalog
+    public class InMemoryCatalog : ICatalog
     {
         private readonly Dictionary<string, Price> _priceByBarCode;
 

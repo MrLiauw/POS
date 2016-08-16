@@ -50,17 +50,19 @@
     <Compile Include="DisplayPriceToConsoleTest.cs" />
     <Compile Include="FindPriceInCatalogContract.cs" />
     <Compile Include="FindPriceInMemoryCatalogTest.cs" />
-    <Compile Include="ICatalog.cs" />
-    <Compile Include="IDisplay.cs" />
-    <Compile Include="InMemoryCatalog.cs" />
     <Compile Include="LearnHowToHijackConsoleStream.cs" />
-    <Compile Include="Price.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SellOneItemControllerTest.cs" />
     <Compile Include="TextUtilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VirtualPointOfSaleTerminal\VirtualPointOfSaleTerminal.csproj">
+      <Project>{1f18ed25-22f9-4bae-b730-425790ececf4}</Project>
+      <Name>VirtualPointOfSaleTerminal</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

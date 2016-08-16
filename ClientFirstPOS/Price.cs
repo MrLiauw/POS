@@ -14,7 +14,7 @@ namespace ClientFirstPOS
             _priceInCents = priceInCents;
         }
 
-        public decimal PriceInDollars()
+        public decimal DollarValue()
         {
             return (decimal)_priceInCents / 100;
         }

@@ -4,22 +4,39 @@ namespace ClientFirstPOS
 {
     public class ConsoleDisplay
     {
-        public void displayProductNotFoundMessage(string barcodeNotFound)
+        private string PRODUCT_NOT_FOUND_MESSAGE_TEMPLATE = "Product not found for {0}";
+        private string EMPTY_BARCODE_MESSAGE_TEMPLATE = "Scanning error: empty barcode";
+        private string PRICE_FOUND_MESSAGE_TEMPLATE = "${0}";
+
+        private void DisplayMessage(string messageTemplate, string placeholderValue = "")
         {
-            Console.WriteLine(
-                string.Format("Product not found for {0}", barcodeNotFound));
+            Render(Merge(messageTemplate, placeholderValue));
         }
 
-        internal void displayEmptyBarcodeMessage()
+        private static void Render(string text)
         {
-            Console.WriteLine(string.Format("Scanning error: empty barcode"));
+            Console.WriteLine(text);
+        }
+
+        private static string Merge(string messageTemplate, string placeholderValue)
+        {
+            return string.Format(
+                messageTemplate, placeholderValue);
+        }
+
+        public void DisplayProductNotFoundMessage(string barcodeNotFound)
+        {
+            DisplayMessage(PRODUCT_NOT_FOUND_MESSAGE_TEMPLATE, barcodeNotFound);
+        }
+
+        internal void DisplayEmptyBarcodeMessage()
+        {
+            DisplayMessage(EMPTY_BARCODE_MESSAGE_TEMPLATE);
         }
 
         public void displayPrice(Price price)
         {
-            decimal priceInDollars = price.PriceInDollars();
-            Console.WriteLine(
-                string.Format("${0}", priceInDollars.ToString("#,##0.00")));
+            DisplayMessage(PRICE_FOUND_MESSAGE_TEMPLATE, price.DollarValue().ToString("#,##0.00"));
         }
     }
 }

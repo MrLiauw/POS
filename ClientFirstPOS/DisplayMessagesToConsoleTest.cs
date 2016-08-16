@@ -29,7 +29,7 @@ namespace ClientFirstPOS
             StringWriter canvas = new StringWriter();
             Console.SetOut(canvas);
 
-            new ConsoleDisplay().displayProductNotFoundMessage("5324234");
+            new ConsoleDisplay().DisplayProductNotFoundMessage("5324234");
 
             Assert.AreEqual(new List<string>() { "Product not found for 5324234" }, 
                 TextUtilities.Lines(canvas.ToString()));
@@ -41,7 +41,7 @@ namespace ClientFirstPOS
             StringWriter canvas = new StringWriter();
             Console.SetOut(canvas);
 
-            new ConsoleDisplay().displayEmptyBarcodeMessage();
+            new ConsoleDisplay().DisplayEmptyBarcodeMessage();
 
             Assert.AreEqual(new List<string>() { "Scanning error: empty barcode" },
                 TextUtilities.Lines(canvas.ToString()));
@@ -54,10 +54,10 @@ namespace ClientFirstPOS
             Console.SetOut(canvas);
 
             var consoleDisplay = new ConsoleDisplay();
-            consoleDisplay.displayEmptyBarcodeMessage();
-            consoleDisplay.displayProductNotFoundMessage("87238947");
-            consoleDisplay.displayEmptyBarcodeMessage();
-            consoleDisplay.displayProductNotFoundMessage("9284324");
+            consoleDisplay.DisplayEmptyBarcodeMessage();
+            consoleDisplay.DisplayProductNotFoundMessage("87238947");
+            consoleDisplay.DisplayEmptyBarcodeMessage();
+            consoleDisplay.DisplayProductNotFoundMessage("9284324");
 
             Assert.AreEqual(new List<string>()
             {

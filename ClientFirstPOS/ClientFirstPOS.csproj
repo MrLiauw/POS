@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DisplayMessagesToConsoleTest.cs" />
+    <Compile Include="DisplayPriceToConsoleTest.cs" />
     <Compile Include="FindPriceInCatalogContract.cs" />
     <Compile Include="FindPriceInMemoryCatalogTest.cs" />
     <Compile Include="ICatalog.cs" />

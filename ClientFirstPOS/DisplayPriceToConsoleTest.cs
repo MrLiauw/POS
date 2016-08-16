@@ -16,13 +16,13 @@ namespace ClientFirstPOS
         [TestCase("$2,108,322.81", 210832281, TestName = "Monetary amount of 210832281 formatted to $2,108,322.81")]
         public void Simplest(string expected, int priceWithCents)
         {
-            Assert.AreEqual(expected, format(priceWithCents));
+            Assert.AreEqual(expected, format(Price.cents(priceWithCents)));
         }
 
-        private static string format(int priceInCents)
+        private static string format(Price price)
         {
-            decimal price = (decimal)priceInCents / 100;
-            return String.Format("${0}", price.ToString("#,##0.00"));
+            decimal priceInDollars = price.PriceInDollars();
+            return String.Format("${0}", priceInDollars.ToString("#,##0.00"));
         }
     }
 }

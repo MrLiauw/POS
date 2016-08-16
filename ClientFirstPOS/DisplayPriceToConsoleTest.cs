@@ -36,7 +36,7 @@ namespace ClientFirstPOS
             StringWriter canvas = new StringWriter();
             Console.SetOut(canvas);
 
-            new ConsoleDisplay().DisplayPrice(Price.cents(priceWithCents));
+            new EnglishLanguageConsoleDisplay().DisplayPrice(Price.cents(priceWithCents));
 
             Assert.AreEqual(new List<string>() { expected },
                 TextUtilities.Lines(canvas.ToString()));

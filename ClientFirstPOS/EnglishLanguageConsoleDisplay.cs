@@ -2,7 +2,7 @@
 
 namespace ClientFirstPOS
 {
-    public class ConsoleDisplay : IDisplay
+    public class EnglishLanguageConsoleDisplay : IDisplay
     {
         private string PRODUCT_NOT_FOUND_MESSAGE_TEMPLATE = "Product not found for {0}";
         private string EMPTY_BARCODE_MESSAGE_TEMPLATE = "Scanning error: empty barcode";

@@ -2,7 +2,7 @@
 
 namespace ClientFirstPOS
 {
-    public class ConsoleDisplay
+    public class ConsoleDisplay : IDisplay
     {
         private string PRODUCT_NOT_FOUND_MESSAGE_TEMPLATE = "Product not found for {0}";
         private string EMPTY_BARCODE_MESSAGE_TEMPLATE = "Scanning error: empty barcode";
@@ -29,12 +29,12 @@ namespace ClientFirstPOS
             DisplayMessage(PRODUCT_NOT_FOUND_MESSAGE_TEMPLATE, barcodeNotFound);
         }
 
-        internal void DisplayEmptyBarcodeMessage()
+        public void DisplayEmptyBarcodeMessage()
         {
             DisplayMessage(EMPTY_BARCODE_MESSAGE_TEMPLATE);
         }
 
-        public void displayPrice(Price price)
+        public void DisplayPrice(Price price)
         {
             DisplayMessage(PRICE_FOUND_MESSAGE_TEMPLATE, price.DollarValue().ToString("#,##0.00"));
         }

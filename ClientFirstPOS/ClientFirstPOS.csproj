@@ -51,6 +51,7 @@
     <Compile Include="FindPriceInCatalogContract.cs" />
     <Compile Include="FindPriceInMemoryCatalogTest.cs" />
     <Compile Include="ICatalog.cs" />
+    <Compile Include="IDisplay.cs" />
     <Compile Include="InMemoryCatalog.cs" />
     <Compile Include="LearnHowToHijackConsoleStream.cs" />
     <Compile Include="Price.cs" />

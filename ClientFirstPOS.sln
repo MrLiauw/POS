@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientFirstPOS", "ClientFir
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualPointOfSaleTerminal", "VirtualPointOfSaleTerminal\VirtualPointOfSaleTerminal.csproj", "{1F18ED25-22F9-4BAE-B730-425790ECECF4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningHardware", "LearningHardware\LearningHardware.csproj", "{A5B7D18B-DBA9-4269-97A9-1F426896327F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{1F18ED25-22F9-4BAE-B730-425790ECECF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F18ED25-22F9-4BAE-B730-425790ECECF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F18ED25-22F9-4BAE-B730-425790ECECF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5B7D18B-DBA9-4269-97A9-1F426896327F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5B7D18B-DBA9-4269-97A9-1F426896327F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5B7D18B-DBA9-4269-97A9-1F426896327F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5B7D18B-DBA9-4269-97A9-1F426896327F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

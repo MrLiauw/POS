@@ -27,6 +27,19 @@ namespace LearningHardware.ui
 
             barcodeScannedListener.Verify(x => x.onBarcode("::barcode::"), Times.Once);
         }
+
+        [Test]
+        public void severalBarcodes()
+        {
+            Mock<IBarcodeScannedListener> barcodeScannedListener = new Mock<IBarcodeScannedListener>();
+
+            new TextCommandInterpreter(barcodeScannedListener.Object).process(
+                new StringReader("::barcode 1::\n::barcode 2::\n::barcode 3::\n"));
+
+            barcodeScannedListener.Verify(x => x.onBarcode("::barcode 1::"), Times.Once);
+            barcodeScannedListener.Verify(x => x.onBarcode("::barcode 2::"), Times.Once);
+            barcodeScannedListener.Verify(x => x.onBarcode("::barcode 3::"), Times.Once);
+        }
     }
 
     public interface IBarcodeScannedListener
@@ -45,9 +58,12 @@ namespace LearningHardware.ui
 
         public void process(StringReader reader)
         {
-            string line = reader.ReadLine();
-            if (!string.IsNullOrEmpty(line))
+            string line;
+            do
+            {
+                line = reader.ReadLine();
                 barcodeScannedListener.onBarcode(line);
+            } while (!string.IsNullOrEmpty(line));
         }
     }
 }

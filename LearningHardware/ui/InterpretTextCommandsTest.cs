@@ -1,4 +1,5 @@
-﻿using Moq;
+﻿using System.IO;
+using Moq;
 using NUnit.Framework;
 
 namespace LearningHardware.ui
@@ -8,23 +9,45 @@ namespace LearningHardware.ui
         [Test]
         public void zero()
         {
-            Mock<BarcodeScannedListener> barcodeScannedListener = new Mock<BarcodeScannedListener>();
+            Mock<IBarcodeScannedListener> barcodeScannedListener = new Mock<IBarcodeScannedListener>();
 
-            barcodeScannedListener.Verify(x=>x.onBarcode(""), Times.Never());
+            new TextCommandInterpreter(barcodeScannedListener.Object).process(
+                new StringReader(""));
 
-            new TextCommandInterpreter().process("");
+            barcodeScannedListener.Verify(x => x.onBarcode(""), Times.Never());
+        }
+
+        [Test]
+        public void oneBarcode()
+        {
+            Mock<IBarcodeScannedListener> barcodeScannedListener = new Mock<IBarcodeScannedListener>();
+
+            new TextCommandInterpreter(barcodeScannedListener.Object).process(
+                new StringReader("::barcode::\n"));
+
+            barcodeScannedListener.Verify(x => x.onBarcode("::barcode::"), Times.Once);
         }
     }
 
-    public interface BarcodeScannedListener
+    public interface IBarcodeScannedListener
     {
         void onBarcode(string barcode);
     }
 
     public class TextCommandInterpreter
     {
-        public void process(string text)
+        private IBarcodeScannedListener barcodeScannedListener;
+
+        public TextCommandInterpreter(IBarcodeScannedListener barcodeScannedListener)
         {
+            this.barcodeScannedListener = barcodeScannedListener;
+        }
+
+        public void process(StringReader reader)
+        {
+            string line = reader.ReadLine();
+            if (!string.IsNullOrEmpty(line))
+                barcodeScannedListener.onBarcode(line);
         }
     }
 }

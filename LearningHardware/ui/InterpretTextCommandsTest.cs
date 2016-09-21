@@ -95,10 +95,15 @@ namespace LearningHardware.ui
                 string line = reader.ReadLine();
                 if (line == null)
                     break;
-                if(line.Trim() == string.Empty)
+                if(SanitizeLine(line) == string.Empty)
                     continue;
-                InterpretTextCommand(line.Trim());
+                InterpretTextCommand(SanitizeLine(line));
             }
+        }
+
+        private static string SanitizeLine(string line)
+        {
+            return line.Trim();
         }
 
         private void InterpretTextCommand(string line)

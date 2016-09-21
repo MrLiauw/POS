@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace VirtualPointOfSaleTerminal
 {
@@ -17,10 +18,7 @@ namespace VirtualPointOfSaleTerminal
                     }
                     ));
 
-            saleController.onBarcode("12345");
-            saleController.onBarcode("23456");
-            saleController.onBarcode("99999");
-            saleController.onBarcode("");
+            new TextCommandInterpreter(saleController).process(new StringReader("12345\n23456\n99999"));
             Console.Read();
         }
     }

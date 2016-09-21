@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using Moq;
 using NUnit.Framework;
+using VirtualPointOfSaleTerminal;
 
 namespace LearningHardware.ui
 {
@@ -66,49 +67,6 @@ namespace LearningHardware.ui
                 new StringReader("\t    ::barcode 1::\t\n   \n"));
 
             barcodeScannedListener.Verify(x => x.onBarcode("::barcode 1::"), Times.Once);
-        }
-    }
-
-    public interface IBarcodeScannedListener
-    {
-        void onBarcode(string barcode);
-    }
-
-    public class TextCommandInterpreter
-    {
-        private IBarcodeScannedListener barcodeScannedListener;
-
-        public TextCommandInterpreter(IBarcodeScannedListener barcodeScannedListener)
-        {
-            this.barcodeScannedListener = barcodeScannedListener;
-        }
-
-        public void process(StringReader reader)
-        {
-            InterpretCommandsFromTextInput(reader);
-        }
-
-        private void InterpretCommandsFromTextInput(StringReader reader)
-        {
-            while (true)
-            {
-                string line = reader.ReadLine();
-                if (line == null)
-                    break;
-                if(SanitizeLine(line) == string.Empty)
-                    continue;
-                InterpretTextCommand(SanitizeLine(line));
-            }
-        }
-
-        private static string SanitizeLine(string line)
-        {
-            return line.Trim();
-        }
-
-        private void InterpretTextCommand(string line)
-        {
-            barcodeScannedListener.onBarcode(line);
         }
     }
 }

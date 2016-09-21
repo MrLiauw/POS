@@ -1,6 +1,6 @@
 ﻿namespace VirtualPointOfSaleTerminal
 {
-    public class SaleController
+    public class SaleController : IBarcodeScannedListener
     {
         private IDisplay display;
         private ICatalog catalog;

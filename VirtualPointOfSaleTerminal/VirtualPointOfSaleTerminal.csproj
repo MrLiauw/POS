@@ -42,11 +42,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EnglishLanguageConsoleDisplay.cs" />
+    <Compile Include="IBarcodeScannedListener.cs" />
     <Compile Include="ICatalog.cs" />
     <Compile Include="IDisplay.cs" />
     <Compile Include="InMemoryCatalog.cs" />
     <Compile Include="Price.cs" />
     <Compile Include="SaleController.cs" />
+    <Compile Include="TextCommandInterpreter.cs" />
     <Compile Include="VirtualPointOfSaleTerminal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

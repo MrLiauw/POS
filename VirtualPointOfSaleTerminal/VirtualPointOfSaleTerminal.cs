@@ -14,12 +14,18 @@ namespace VirtualPointOfSaleTerminal
                     new Dictionary<string, Price>()
                     {
                         {"12345", Price.cents(795)},
-                        {"23456", Price.cents(1250)}
+                        {"23456", Price.cents(1250)},
+                        {"6932691994020", Price.cents(305)}
                     }
                     ));
 
             new TextCommandInterpreter(saleController).process(new StringReader("12345\n23456\n99999"));
-            Console.Read();
+
+            while (true)
+            {
+                string input = Console.ReadLine();
+                new TextCommandInterpreter(saleController).process(new StringReader(input));
+            }
         }
     }
 }

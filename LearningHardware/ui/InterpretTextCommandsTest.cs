@@ -40,6 +40,33 @@ namespace LearningHardware.ui
             barcodeScannedListener.Verify(x => x.onBarcode("::barcode 2::"), Times.Once);
             barcodeScannedListener.Verify(x => x.onBarcode("::barcode 3::"), Times.Once);
         }
+
+        [Test]
+        public void severalBarcodesInterspresedWithEmptyLines()
+        {
+            Mock<IBarcodeScannedListener> barcodeScannedListener = new Mock<IBarcodeScannedListener>();
+
+            new TextCommandInterpreter(barcodeScannedListener.Object).process(
+                new StringReader("::barcode 1::\n   \n::barcode 2::\n\t\n::barcode 3::\n"));
+
+            barcodeScannedListener.Verify(x => x.onBarcode("::barcode 1::"), Times.Once);
+            barcodeScannedListener.Verify(x => x.onBarcode("::barcode 2::"), Times.Once);
+            barcodeScannedListener.Verify(x => x.onBarcode("::barcode 3::"), Times.Once);
+            barcodeScannedListener.Verify(x => x.onBarcode("   "), Times.Never);
+            barcodeScannedListener.Verify(x => x.onBarcode(""), Times.Never);
+            barcodeScannedListener.Verify(x => x.onBarcode("\t"), Times.Never);
+        }
+
+        [Test]
+        public void trimsBarcode()
+        {
+            Mock<IBarcodeScannedListener> barcodeScannedListener = new Mock<IBarcodeScannedListener>();
+
+            new TextCommandInterpreter(barcodeScannedListener.Object).process(
+                new StringReader("\t    ::barcode 1::\t\n   \n"));
+
+            barcodeScannedListener.Verify(x => x.onBarcode("::barcode 1::"), Times.Once);
+        }
     }
 
     public interface IBarcodeScannedListener
@@ -58,12 +85,25 @@ namespace LearningHardware.ui
 
         public void process(StringReader reader)
         {
-            string line;
-            do
+            InterpretCommandsFromTextInput(reader);
+        }
+
+        private void InterpretCommandsFromTextInput(StringReader reader)
+        {
+            while (true)
             {
-                line = reader.ReadLine();
-                barcodeScannedListener.onBarcode(line);
-            } while (!string.IsNullOrEmpty(line));
+                string line = reader.ReadLine();
+                if (line == null)
+                    break;
+                if(line.Trim() == string.Empty)
+                    continue;
+                InterpretTextCommand(line.Trim());
+            }
+        }
+
+        private void InterpretTextCommand(string line)
+        {
+            barcodeScannedListener.onBarcode(line);
         }
     }
 }
